@@ -126,8 +126,27 @@ export function classifyStatus(code: number): StatusCategory {
  * nombre y valor. Recuerda `.trim()` para quitar espacios sobrantes.
  */
 export function parseHeaders(text: string): Headers {
-  // TODO: tu implementación aquí
-  throw new Error("Not implemented");
+  const headers: Headers = {};
+  const lines = text.split(/\r?\n/);
+
+  for (const line of lines) {
+    const separatorIndex = line.indexOf(":");
+
+    if (separatorIndex === -1) {
+      continue;
+    }
+
+    const name = line.slice(0, separatorIndex).trim();
+    const value = line.slice(separatorIndex + 1).trim();
+
+    if (name.length === 0) {
+      continue;
+    }
+
+    headers[name] = value;
+  }
+
+  return headers;
 }
 
 /**
@@ -147,10 +166,28 @@ export function parseHeaders(text: string): Headers {
 export function summarizeRequest(
   url: string,
   status: number,
-  headersText: string,
+  headersText: string
 ): string {
-  // TODO: tu implementación aquí
-  throw new Error("Not implemented");
+  const urlParts = parseUrl(url);
+  const statusCategory = classifyStatus(status);
+  const headers = parseHeaders(headersText);
+
+  const formattedHeaders = Object.entries(headers)
+    .map(([name, value]) => `- ${name}: ${value}`)
+    .join("\n");
+
+  const headersSummary =
+    formattedHeaders.length > 0 ? formattedHeaders : "Sin cabeceras";
+
+  return [
+    `URL: ${url}`,
+    `Protocolo: ${urlParts.protocol}`,
+    `Host: ${urlParts.host}`,
+    `Ruta: ${urlParts.pathname}`,
+    `Estado: ${status} - ${statusCategory}`,
+    "Cabeceras:",
+    headersSummary,
+  ].join("\n");
 }
 
 // ---------------------------------------------------------------------------
