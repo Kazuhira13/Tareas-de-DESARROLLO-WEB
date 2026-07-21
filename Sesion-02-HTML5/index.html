@@ -3,69 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Sitio — Inicio</title>
-  <!-- TODO: agrega meta description, autor, favicon -->
+  <meta
+    name="description"
+    content="Portal nostálgico sobre anime y cultura otaku inspirado en la web del año 2002"
+  >
+  <meta name="author" content="Kazuhira13">
+  <title>Otaku Zone 2002 | Inicio</title>
+  <link rel="stylesheet" href="estilos.css">
 </head>
-<body>
 
-  <!-- TODO: header con navegacion a las otras 3 paginas -->
-  <header>
-    <h1>Mi Sitio</h1>
-    <!-- TODO: <nav> con enlaces a pagina1.html, pagina2.html, pagina3.html -->
+<body>
+  <header class="encabezado-principal">
+    <p class="estado">● PORTAL EN LÍNEA ●</p>
+
+    <h1>Otaku Zone 2002</h1>
+
+    <p>
+      Tu rincón nostálgico de anime, tecnología y cultura otaku.
+    </p>
+
+    <nav aria-label="Navegación principal">
+      <ul>
+        <li><a href="index.html" aria-current="page">Inicio</a></li>
+        <li><a href="pagina1.html">Animes clásicos</a></li>
+        <li><a href="pagina2.html">Guía otaku</a></li>
+        <li><a href="pagina3.html">Libro de visitas</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main>
     <article>
-      <h2>Bienvenido</h2>
+      <header>
+        <h2>Bienvenido, visitante</h2>
+      </header>
 
-      <!-- TODO: usa <figure> + <figcaption> para una imagen con alt y loading="lazy" -->
-      <img src="https://via.placeholder.com/800x400"
-           alt="Imagen de bienvenida"
-           width="800" height="400"
-           loading="lazy">
+      <section>
+        <h3>Un portal detenido en el año 2002</h3>
 
-      <p>Parrafo de introduccion. Lorem ipsum dolor sit amet.</p>
+        <p>
+          Otaku Zone 2002 recuerda aquellos sitios creados durante los
+          primeros años de Internet, cuando los fanáticos del anime
+          compartían recomendaciones, dibujos, noticias y mensajes en
+          pequeños portales personales.
+        </p>
 
-      <!-- TODO: usa <dialog> + un boton con command/commandfor (Invoker Commands API) -->
-      <dialog id="bienvenida">
-        <h3>Hola!</h3>
-        <p>Esto es un dialog modal nativo.</p>
-        <form method="dialog">
-          <button>Cerrar</button>
-        </form>
-      </dialog>
-      <button command="show-modal" commandfor="bienvenida">
-        Abrir dialog
-      </button>
+        <p>
+          Aquí podrás conocer animes clásicos, aprender términos de la
+          cultura otaku y dejar un mensaje en nuestro libro de visitas.
+        </p>
+      </section>
 
-      <!-- TODO: usa popover para un menu o tooltip -->
-      <button popovertarget="menu-ayuda">?</button>
-      <div id="menu-ayuda" popover>
-        <h4>Ayuda</h4>
-        <p>Contenido del popover...</p>
-      </div>
+      <section>
+        <h3>Explora el portal</h3>
 
-      <!-- TODO: formulario con al menos 3 inputs (text, email, etc.) -->
-      <form action="#" method="POST">
-        <label for="nombre">Nombre:</label>
-        <input id="nombre" type="text" name="nombre" required minlength="3">
-
-        <label for="email">Email:</label>
-        <input id="email" type="email" name="email" required>
-
-        <label for="mensaje">Mensaje:</label>
-        <textarea id="mensaje" name="mensaje" rows="4"></textarea>
-
-        <button type="submit">Enviar</button>
-      </form>
+        <p>
+          Visita la sección de animes clásicos para descubrir historias
+          memorables, consulta nuestra guía otaku o firma el libro de
+          visitas para dejar constancia de tu paso por el sitio.
+        </p>
+      </section>
     </article>
 
-    <!-- TODO: usa <aside> para contenido lateral -->
+    <aside>
+      <h2>Estado del portal</h2>
+
+      <p><strong>Visitante:</strong> 000245</p>
+      <p><strong>Última actualización:</strong> 21 de julio de 2002</p>
+      <p><strong>Resolución recomendada:</strong> 800 × 600</p>
+    </aside>
   </main>
 
   <footer>
-    <p>&copy; 2026 Mi Sitio — Universidad Mariano Galvez</p>
+    <p>&copy; 2002–2026 Otaku Zone 2002</p>
+    <p>Creado para la Sesión 2 de Desarrollo Web.</p>
   </footer>
-
 </body>
 </html>
