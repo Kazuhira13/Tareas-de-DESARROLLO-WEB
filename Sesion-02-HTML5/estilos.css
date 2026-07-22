@@ -114,6 +114,88 @@ footer {
   border: 3px ridge #bfc8ff;
 }
 
+.imagen-destacada {
+  margin: 20px 0;
+  padding: 10px;
+  text-align: center;
+  background-color: #02042b;
+  border: 4px ridge #7ffcff;
+}
+
+.imagen-destacada img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 2px solid #687dff;
+}
+
+.imagen-destacada figcaption {
+  margin-top: 10px;
+  color: #c9d2ff;
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+}
+
+.lista-retro {
+  padding: 15px 15px 15px 38px;
+  background-color: #02042b;
+  border: 2px dashed #7ffcff;
+}
+
+.lista-retro li {
+  margin-bottom: 10px;
+}
+
+.glosario-retro {
+  padding: 15px;
+  background-color: #02042b;
+  border: 2px solid #687dff;
+}
+
+.glosario-retro dt {
+  margin-top: 12px;
+  color: #7dff9a;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+.glosario-retro dd {
+  margin: 4px 0 0 20px;
+}
+
+.contenedor-tabla {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #02042b;
+}
+
+caption {
+  padding: 10px;
+  color: #7ffcff;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 2px solid #687dff;
+  text-align: left;
+}
+
+th {
+  color: #080f4d;
+  background-color: #7ffcff;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #10175c;
+}
+
 @media (max-width: 700px) {
   main {
     grid-template-columns: 1fr;
