@@ -196,6 +196,103 @@ tbody tr:nth-child(even) {
   background-color: #10175c;
 }
 
+
+.controles-retro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+button {
+  padding: 9px 14px;
+  color: #ffffff;
+  font: inherit;
+  font-weight: bold;
+  background: linear-gradient(#4764ff, #18216f);
+  border: 3px outset #bfc8ff;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus {
+  color: #080f4d;
+  background: #7ffcff;
+}
+
+button:active {
+  border-style: inset;
+}
+
+dialog {
+  width: min(480px, 90%);
+  padding: 22px;
+  color: #f5f7ff;
+  background-color: #080f4d;
+  border: 5px ridge #7ffcff;
+}
+
+dialog::backdrop {
+  background-color: rgba(2, 4, 43, 0.8);
+}
+
+[popover] {
+  width: min(360px, 90%);
+  padding: 18px;
+  color: #f5f7ff;
+  background-color: #10175c;
+  border: 4px ridge #7ffcff;
+}
+
+.formulario-retro {
+  padding: 18px;
+  background-color: #02042b;
+  border: 3px ridge #687dff;
+}
+
+.campo-formulario {
+  margin-bottom: 16px;
+}
+
+.campo-formulario label {
+  display: block;
+  margin-bottom: 6px;
+  color: #7dff9a;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+.campo-formulario input,
+.campo-formulario textarea {
+  width: 100%;
+  padding: 10px;
+  color: #f5f7ff;
+  font: inherit;
+  background-color: #080f4d;
+  border: 2px inset #bfc8ff;
+}
+
+.campo-formulario input::placeholder,
+.campo-formulario textarea::placeholder {
+  color: #aeb8e8;
+}
+
+.campo-formulario input:focus,
+.campo-formulario textarea:focus {
+  outline: 3px solid #7ffcff;
+  outline-offset: 2px;
+}
+
+.campo-formulario input:invalid:not(:placeholder-shown),
+.campo-formulario textarea:invalid:not(:placeholder-shown) {
+  border-color: #ff8ca8;
+}
+
+.campo-formulario input:valid:not(:placeholder-shown),
+.campo-formulario textarea:valid:not(:placeholder-shown) {
+  border-color: #7dff9a;
+}
+
 @media (max-width: 700px) {
   main {
     grid-template-columns: 1fr;

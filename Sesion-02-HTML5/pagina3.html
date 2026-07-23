@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <meta
     name="description"
     content="Libro de visitas del portal nostálgico Otaku Zone 2002"
   >
+
   <meta name="author" content="Kazuhira13">
+
   <title>Otaku Zone 2002 | Libro de visitas</title>
+
   <link rel="stylesheet" href="estilos.css">
 </head>
 
@@ -20,11 +24,22 @@
 
     <nav aria-label="Navegación principal">
       <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="pagina1.html">Animes clásicos</a></li>
-        <li><a href="pagina2.html">Guía otaku</a></li>
         <li>
-          <a href="pagina3.html" aria-current="page">Libro de visitas</a>
+          <a href="index.html">Inicio</a>
+        </li>
+
+        <li>
+          <a href="pagina1.html">Animes clásicos</a>
+        </li>
+
+        <li>
+          <a href="pagina2.html">Guía otaku</a>
+        </li>
+
+        <li>
+          <a href="pagina3.html" aria-current="page">
+            Libro de visitas
+          </a>
         </li>
       </ul>
     </nav>
@@ -51,27 +66,103 @@
       </section>
 
       <section>
-        <h3>Próximamente</h3>
+        <h3>Firma el libro de visitas</h3>
 
         <p>
-          En esta página encontrarás un formulario para registrar tu visita
-          y compartir un mensaje con la comunidad.
+          Completa los siguientes campos para dejar tu mensaje en el portal.
+          Los campos marcados como obligatorios deben llenarse antes de enviar.
         </p>
+
+        <form class="formulario-retro" action="#" method="post">
+          <div class="campo-formulario">
+            <label for="nombre">
+              Nombre o alias:
+            </label>
+
+            <input
+              id="nombre"
+              name="nombre"
+              type="text"
+              required
+              minlength="3"
+              maxlength="30"
+              autocomplete="name"
+              placeholder="Ejemplo: AnimeFan2002"
+            >
+          </div>
+
+          <div class="campo-formulario">
+            <label for="correo">
+              Correo electrónico:
+            </label>
+
+            <input
+              id="correo"
+              name="correo"
+              type="email"
+              required
+              autocomplete="email"
+              placeholder="usuario@correo.com"
+            >
+          </div>
+
+          <div class="campo-formulario">
+            <label for="anime-favorito">
+              Anime favorito:
+            </label>
+
+            <input
+              id="anime-favorito"
+              name="anime-favorito"
+              type="text"
+              required
+              minlength="2"
+              maxlength="50"
+              placeholder="Escribe el nombre de tu anime favorito"
+            >
+          </div>
+
+          <div class="campo-formulario">
+            <label for="mensaje">
+              Mensaje para el portal:
+            </label>
+
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              rows="6"
+              required
+              minlength="10"
+              maxlength="300"
+              placeholder="Comparte una recomendación o deja un saludo..."
+            ></textarea>
+          </div>
+
+          <button type="submit">
+            Firmar libro de visitas
+          </button>
+        </form>
       </section>
     </article>
 
     <aside>
       <h2>Normas del portal</h2>
 
-      <p>
-        Escribe mensajes respetuosos y evita compartir información personal.
-      </p>
+      <ul>
+        <li>Escribe mensajes respetuosos.</li>
+        <li>No compartas información personal.</li>
+        <li>Evita contenido ofensivo.</li>
+        <li>Recomienda tus animes favoritos.</li>
+      </ul>
     </aside>
   </main>
 
   <footer>
     <p>&copy; 2002–2026 Otaku Zone 2002</p>
-    <p><a href="index.html">Regresar al portal principal</a></p>
+
+    <p>
+      <a href="index.html">Regresar al portal principal</a>
+    </p>
   </footer>
 </body>
 </html>

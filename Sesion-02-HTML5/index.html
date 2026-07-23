@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <meta
     name="description"
     content="Portal nostálgico sobre anime y cultura otaku inspirado en la web del año 2002"
   >
+
   <meta name="author" content="Kazuhira13">
+
   <title>Otaku Zone 2002 | Inicio</title>
+
   <link rel="stylesheet" href="estilos.css">
 </head>
 
@@ -24,10 +28,21 @@
 
     <nav aria-label="Navegación principal">
       <ul>
-        <li><a href="index.html" aria-current="page">Inicio</a></li>
-        <li><a href="pagina1.html">Animes clásicos</a></li>
-        <li><a href="pagina2.html">Guía otaku</a></li>
-        <li><a href="pagina3.html">Libro de visitas</a></li>
+        <li>
+          <a href="index.html" aria-current="page">Inicio</a>
+        </li>
+
+        <li>
+          <a href="pagina1.html">Animes clásicos</a>
+        </li>
+
+        <li>
+          <a href="pagina2.html">Guía otaku</a>
+        </li>
+
+        <li>
+          <a href="pagina3.html">Libro de visitas</a>
+        </li>
       </ul>
     </nav>
   </header>
@@ -63,20 +78,84 @@
           visitas para dejar constancia de tu paso por el sitio.
         </p>
       </section>
+
+      <section>
+        <h3>Centro interactivo</h3>
+
+        <p>
+          Utiliza los controles del portal para leer el mensaje de bienvenida
+          o consultar una guía rápida de navegación.
+        </p>
+
+        <div class="controles-retro">
+          <button
+            type="button"
+            command="show-modal"
+            commandfor="mensaje-bienvenida"
+          >
+            Abrir mensaje
+          </button>
+
+          <button
+            type="button"
+            popovertarget="ayuda-portal"
+          >
+            Ayuda del portal
+          </button>
+        </div>
+
+        <dialog id="mensaje-bienvenida">
+          <h3>¡Bienvenido a Otaku Zone 2002!</h3>
+
+          <p>
+            Gracias por visitar este pequeño rincón dedicado al anime clásico
+            y a la nostalgia de los primeros años de Internet.
+          </p>
+
+          <form method="dialog">
+            <button type="submit">
+              Cerrar mensaje
+            </button>
+          </form>
+        </dialog>
+
+        <div id="ayuda-portal" popover>
+          <h3>Guía rápida</h3>
+
+          <p>
+            Usa el menú superior para consultar animes clásicos, explorar la
+            guía otaku o firmar nuestro libro de visitas.
+          </p>
+        </div>
+      </section>
     </article>
 
     <aside>
       <h2>Estado del portal</h2>
 
-      <p><strong>Visitante:</strong> 000245</p>
-      <p><strong>Última actualización:</strong> 21 de julio de 2002</p>
-      <p><strong>Resolución recomendada:</strong> 800 × 600</p>
+      <p>
+        <strong>Visitante:</strong>
+        000245
+      </p>
+
+      <p>
+        <strong>Última actualización:</strong>
+        21 de julio de 2002
+      </p>
+
+      <p>
+        <strong>Resolución recomendada:</strong>
+        800 × 600
+      </p>
     </aside>
   </main>
 
   <footer>
     <p>&copy; 2002–2026 Otaku Zone 2002</p>
-    <p>Creado para la Sesión 2 de Desarrollo Web.</p>
+
+    <p>
+      Creado para la Sesión 2 de Desarrollo Web.
+    </p>
   </footer>
 </body>
 </html>
