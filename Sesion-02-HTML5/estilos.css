@@ -293,6 +293,31 @@ dialog::backdrop {
   border-color: #7dff9a;
 }
 
+.salto-contenido {
+  position: absolute;
+  top: -60px;
+  left: 20px;
+  z-index: 1000;
+  padding: 10px 16px;
+  color: #080f4d;
+  font-weight: bold;
+  background-color: #7ffcff;
+  border: 3px outset #ffffff;
+  text-decoration: none;
+}
+
+.salto-contenido:focus {
+  top: 20px;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #7dff9a;
+  outline-offset: 3px;
+}
+
 @media (max-width: 700px) {
   main {
     grid-template-columns: 1fr;
