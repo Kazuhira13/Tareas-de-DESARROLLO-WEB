@@ -2,116 +2,265 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería de Productos — Tarea CSS</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Galería retro de productos inspirados en anime y cultura otaku"
+    >
+
+    <meta name="author" content="Kazuhira13">
+
+    <title>Otaku Store 2002 | Galería de productos</title>
+
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+    <header class="site-header">
+        <p class="estado-tienda">● TIENDA EN LÍNEA ●</p>
+
+        <h1>Otaku Store 2002</h1>
+
+        <p>
+            Productos retro para fanáticos del anime, manga y la cultura
+            japonesa.
+        </p>
+    </header>
 
     <main class="container">
-        <h1>Galería de Productos</h1>
+        <section
+            class="seccion-productos"
+            aria-labelledby="titulo-galeria"
+        >
+            <header class="section-header">
+                <h2 id="titulo-galeria">Galería de productos</h2>
 
-        <!-- TODO: Galería de productos
-             Cada tarjeta debe contener:
-             - Imagen del producto (usa placeholder o imágenes de ejemplo)
-             - Nombre del producto
-             - Precio
-             - Botón con texto "Comprar"
-             
-             Desktop (>=1024px): 3 columnas
-             Mobile (<768px): 1 columna con scroll vertical
-        -->
-        <section class="galeria">
+                <p>
+                    Explora nuestra selección de artículos inspirados en
+                    los portales otaku de principios de los años 2000.
+                </p>
+            </header>
 
-            <article class="producto">
-                <img src="https://via.placeholder.com/300x200/e0e0e0/333?text=Producto+1" alt="Producto 1">
-                <div class="producto-info">
-                    <h2>Nombre del Producto 1</h2>
-                    <p class="precio">Q99.99</p>
-                    <button class="btn-comprar">Comprar</button>
-                </div>
-            </article>
+            <div class="galeria">
+                <article class="producto">
+                    <img
+                        src="https://placehold.co/600x400/172484/7ffcff?text=Figura+Mecha"
+                        alt="Figura coleccionable de un robot mecha clásico"
+                        width="600"
+                        height="400"
+                    >
 
-            <article class="producto">
-                <img src="https://via.placeholder.com/300x200/e0e0e0/333?text=Producto+2" alt="Producto 2">
-                <div class="producto-info">
-                    <h2>Nombre del Producto 2</h2>
-                    <p class="precio">Q149.99</p>
-                    <button class="btn-comprar">Comprar</button>
-                </div>
-            </article>
+                    <div class="producto-info">
+                        <h3>Figura Mecha Clásica</h3>
 
-            <article class="producto">
-                <img src="https://via.placeholder.com/300x200/e0e0e0/333?text=Producto+3" alt="Producto 3">
-                <div class="producto-info">
-                    <h2>Nombre del Producto 3</h2>
-                    <p class="precio">Q199.99</p>
-                    <button class="btn-comprar">Comprar</button>
-                </div>
-            </article>
+                        <p>
+                            Figura coleccionable inspirada en los animes
+                            de robots gigantes.
+                        </p>
 
-            <article class="producto">
-                <img src="https://via.placeholder.com/300x200/e0e0e0/333?text=Producto+4" alt="Producto 4">
-                <div class="producto-info">
-                    <h2>Nombre del Producto 4</h2>
-                    <p class="precio">Q79.99</p>
-                    <button class="btn-comprar">Comprar</button>
-                </div>
-            </article>
+                        <p class="precio">
+                            <span class="sr-only">Precio:</span>
+                            Q199.99
+                        </p>
 
-            <article class="producto">
-                <img src="https://via.placeholder.com/300x200/e0e0e0/333?text=Producto+5" alt="Producto 5">
-                <div class="producto-info">
-                    <h2>Nombre del Producto 5</h2>
-                    <p class="precio">Q249.99</p>
-                    <button class="btn-comprar">Comprar</button>
-                </div>
-            </article>
+                        <button class="btn-comprar" type="button">Comprar</button>
+                    </div>
+                </article>
 
-            <article class="producto">
-                <img src="https://via.placeholder.com/300x200/e0e0e0/333?text=Producto+6" alt="Producto 6">
-                <div class="producto-info">
-                    <h2>Nombre del Producto 6</h2>
-                    <p class="precio">Q299.99</p>
-                    <button class="btn-comprar">Comprar</button>
-                </div>
-            </article>
+                <article class="producto">
+                    <img
+                        src="https://placehold.co/600x400/25105c/ffffff?text=Manga+Retro"
+                        alt="Tomo de manga con diseño retro"
+                        width="600"
+                        height="400"
+                    >
 
+                    <div class="producto-info">
+                        <h3>Tomo de Manga Retro</h3>
+
+                        <p>
+                            Edición especial con portada inspirada en las
+                            publicaciones clásicas.
+                        </p>
+
+                        <p class="precio">
+                            <span class="sr-only">Precio:</span>
+                            Q89.99
+                        </p>
+
+                        <button class="btn-comprar" type="button">Comprar</button>
+                    </div>
+                </article>
+
+                <article class="producto">
+                    <img
+                        src="https://placehold.co/600x400/080f4d/7dff9a?text=Camiseta+Cyberpunk"
+                        alt="Camiseta negra con diseño anime cyberpunk"
+                        width="600"
+                        height="400"
+                    >
+
+                    <div class="producto-info">
+                        <h3>Camiseta Cyberpunk</h3>
+
+                        <p>
+                            Camiseta con ilustración futurista y detalles
+                            de neón.
+                        </p>
+
+                        <p class="precio">
+                            <span class="sr-only">Precio:</span>
+                            Q149.99
+                        </p>
+
+                        <button class="btn-comprar" type="button">Comprar</button>
+                    </div>
+                </article>
+
+                <article class="producto">
+                    <img
+                        src="https://placehold.co/600x400/10175c/c9d2ff?text=Poster+Anime"
+                        alt="Póster decorativo inspirado en anime clásico"
+                        width="600"
+                        height="400"
+                    >
+
+                    <div class="producto-info">
+                        <h3>Póster Anime Clásico</h3>
+
+                        <p>
+                            Póster decorativo para habitaciones, estudios
+                            y espacios personales.
+                        </p>
+
+                        <p class="precio">
+                            <span class="sr-only">Precio:</span>
+                            Q69.99
+                        </p>
+
+                        <button class="btn-comprar" type="button">Comprar</button>
+                    </div>
+                </article>
+
+                <article class="producto">
+                    <img
+                        src="https://placehold.co/600x400/18216f/ffffff?text=Llaveros+Otaku"
+                        alt="Set de llaveros con símbolos de cultura otaku"
+                        width="600"
+                        height="400"
+                    >
+
+                    <div class="producto-info">
+                        <h3>Set de Llaveros Otaku</h3>
+
+                        <p>
+                            Colección de seis llaveros con diseños
+                            nostálgicos.
+                        </p>
+
+                        <p class="precio">
+                            <span class="sr-only">Precio:</span>
+                            Q79.99
+                        </p>
+
+                        <button class="btn-comprar" type="button">Comprar</button>
+                    </div>
+                </article>
+
+                <article class="producto">
+                    <img
+                        src="https://placehold.co/600x400/02042b/7ffcff?text=Mousepad+Otaku"
+                        alt="Mousepad grande con ilustración de anime retro"
+                        width="600"
+                        height="400"
+                    >
+
+                    <div class="producto-info">
+                        <h3>Mousepad Edición Otaku</h3>
+
+                        <p>
+                            Mousepad extendido con superficie suave y base
+                            antideslizante.
+                        </p>
+
+                        <p class="precio">
+                            <span class="sr-only">Precio:</span>
+                            Q129.99
+                        </p>
+
+                        <button class="btn-comprar" type="button">Comprar</button>
+                    </div>
+                </article>
+            </div>
         </section>
 
-        <h2>To-Do List</h2>
+        <section
+            class="todo-list"
+            aria-labelledby="titulo-tareas"
+        >
+            <header class="section-header">
+                <h2 id="titulo-tareas">To-Do List de la tienda</h2>
 
-        <!-- TODO: Layout de Todo List
-             Lista de tareas estilizada con:
-             - Checkbox para marcar completado
-             - Texto de la tarea
-             - Diseño limpio y accesible
-        -->
-        <section class="todo-list">
+                <p>
+                    Actividades pendientes para mantener actualizado el portal.
+                </p>
+            </header>
+
             <ul class="tareas" role="list">
                 <li class="tarea">
-                    <input type="checkbox" id="t1">
-                    <label for="t1">Aprender CSS Grid</label>
+                    <input type="checkbox" id="tarea-1">
+
+                    <label for="tarea-1">
+                        Revisar el inventario de productos
+                    </label>
                 </li>
+
                 <li class="tarea">
-                    <input type="checkbox" id="t2">
-                    <label for="t2">Practicar Flexbox</label>
+                    <input type="checkbox" id="tarea-2">
+
+                    <label for="tarea-2">
+                        Actualizar los precios de la galería
+                    </label>
                 </li>
+
                 <li class="tarea">
-                    <input type="checkbox" id="t3">
-                    <label for="t3">Estudiar diseño responsivo</label>
+                    <input type="checkbox" id="tarea-3">
+
+                    <label for="tarea-3">
+                        Preparar los pedidos pendientes
+                    </label>
                 </li>
+
                 <li class="tarea">
-                    <input type="checkbox" id="t4">
-                    <label for="t4">Hacer la tarea de CSS</label>
+                    <input type="checkbox" id="tarea-4">
+
+                    <label for="tarea-4">
+                        Publicar nuevas promociones
+                    </label>
                 </li>
+
                 <li class="tarea">
-                    <input type="checkbox" id="t5">
-                    <label for="t5">Revisar novedades de CSS 2024</label>
+                    <input type="checkbox" id="tarea-5">
+
+                    <label for="tarea-5">
+                        Responder mensajes de los clientes
+                    </label>
                 </li>
             </ul>
         </section>
     </main>
 
+    <footer class="site-footer">
+        <p>&copy; 2002–2026 Otaku Store 2002</p>
+
+        <p>
+            Proyecto de la Sesión 3 del curso Desarrollo Web.
+        </p>
+    </footer>
 </body>
 </html>
