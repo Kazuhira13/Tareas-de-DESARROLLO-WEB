@@ -11,6 +11,7 @@ html {
 body {
     margin: 0;
     min-height: 100vh;
+    overflow-x: hidden;
     font-family: Arial, Helvetica, sans-serif;
     color: #e9ecff;
     background-color: #07091f;
@@ -96,17 +97,25 @@ input {
 }
 
 .galeria {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 24px;
 }
 
 .producto {
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     background-color: #121633;
     border: 2px solid #303879;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.producto:hover {
+    transform: translateY(-4px);
+    border-color: #59f3ff;
 }
 
 .producto img {
@@ -117,6 +126,9 @@ input {
 }
 
 .producto-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
     padding: 22px;
 }
 
@@ -141,6 +153,7 @@ input {
 
 .btn-comprar {
     width: 100%;
+    margin-top: auto;
     padding: 12px 18px;
     color: #071022;
     background-color: #59f3ff;
@@ -150,6 +163,17 @@ input {
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-comprar:hover {
+    background-color: #74ff9c;
+    transform: translateY(-2px);
+}
+
+.btn-comprar:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 3px;
 }
 
 .todo-list {
@@ -174,6 +198,10 @@ input {
     border-bottom: 1px solid #343b78;
 }
 
+.tarea:nth-child(even) {
+    background-color: #141936;
+}
+
 .tarea:first-child {
     border-radius: 8px 8px 0 0;
 }
@@ -186,6 +214,7 @@ input {
 .tarea input[type="checkbox"] {
     width: 20px;
     height: 20px;
+    flex-shrink: 0;
     accent-color: #59f3ff;
     cursor: pointer;
 }
@@ -193,6 +222,16 @@ input {
 .tarea label {
     color: #f0f1ff;
     cursor: pointer;
+}
+
+.tarea input[type="checkbox"]:checked + label {
+    color: #9299c4;
+    text-decoration: line-through;
+}
+
+.tarea input[type="checkbox"]:focus-visible {
+    outline: 3px solid #74ff9c;
+    outline-offset: 3px;
 }
 
 .site-footer {
@@ -207,10 +246,37 @@ input {
     margin: 5px 0;
 }
 
+@media (max-width: 767px) {
+    .site-header h1 {
+        font-size: 2rem;
+    }
+
+    .galeria {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+    }
+
+    .producto img {
+        height: 200px;
+    }
+
+    .todo-list {
+        padding: 20px;
+    }
+
+    .tarea {
+        align-items: flex-start;
+    }
+}
+
 @media (min-width: 768px) {
     .container {
         padding-top: 55px;
         padding-bottom: 55px;
+    }
+
+    .galeria {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .producto-info {
@@ -219,5 +285,11 @@ input {
 
     .todo-list {
         padding: 34px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .galeria {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
