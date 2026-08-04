@@ -1,20 +1,223 @@
-/* TODO: Reset y estilos base */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
-/* TODO: Galería de productos */
-/* Desktop (>=1024px): 3 columnas usando CSS Grid */
-/* Mobile (<768px): 1 columna con scroll vertical */
+html {
+    scroll-behavior: smooth;
+}
 
-/* TODO: Estilo de cada tarjeta de producto */
-/* - Imagen ocupa el ancho completo de la tarjeta */
-/* - Nombre del producto en negrita */
-/* - Precio destacado */
-/* - Botón "Comprar" estilizado con hover effect */
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #e9ecff;
+    background-color: #07091f;
+    line-height: 1.6;
+}
 
-/* TODO: To-Do List */
-/* - Lista sin marcadores (list-style: none) */
-/* - Checkbox con label accesible */
-/* - Tareas alternadas con color de fondo (zebra striping) */
+img {
+    display: block;
+    max-width: 100%;
+}
 
-/* TODO: Diseño responsivo */
-/* - Usar @media queries para cambiar entre mobile y desktop */
-/* - La galería debe ser responsiva usando Grid + media queries */
+button,
+input {
+    font: inherit;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.site-header {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #11164d;
+    border-bottom: 4px solid #59f3ff;
+}
+
+.site-header h1 {
+    margin: 8px 0;
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.site-header > p:last-child {
+    max-width: 650px;
+    margin: 0 auto;
+    color: #c8ceff;
+}
+
+.estado-tienda {
+    margin: 0;
+    color: #74ff9c;
+    font-size: 0.9rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.container {
+    width: min(1120px, 92%);
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.seccion-productos {
+    margin-bottom: 50px;
+}
+
+.section-header {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.section-header h2 {
+    margin: 0 0 8px;
+    color: #7ffcff;
+    font-size: 2rem;
+}
+
+.section-header p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: #b9bee4;
+}
+
+.galeria {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.producto {
+    overflow: hidden;
+    background-color: #121633;
+    border: 2px solid #303879;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.producto img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 2px solid #303879;
+}
+
+.producto-info {
+    padding: 22px;
+}
+
+.producto-info h3 {
+    margin: 0 0 12px;
+    color: #ffffff;
+    font-size: 1.35rem;
+}
+
+.producto-info > p:not(.precio) {
+    min-height: 52px;
+    margin: 0 0 18px;
+    color: #c4c8e6;
+}
+
+.precio {
+    margin: 0 0 18px;
+    color: #74ff9c;
+    font-size: 1.45rem;
+    font-weight: bold;
+}
+
+.btn-comprar {
+    width: 100%;
+    padding: 12px 18px;
+    color: #071022;
+    background-color: #59f3ff;
+    border: 2px solid #9ff8ff;
+    border-radius: 7px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.todo-list {
+    padding: 28px;
+    background-color: #10142e;
+    border: 2px solid #303879;
+    border-radius: 12px;
+}
+
+.tareas {
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tarea {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    background-color: #181d42;
+    border-bottom: 1px solid #343b78;
+}
+
+.tarea:first-child {
+    border-radius: 8px 8px 0 0;
+}
+
+.tarea:last-child {
+    border-bottom: 0;
+    border-radius: 0 0 8px 8px;
+}
+
+.tarea input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #59f3ff;
+    cursor: pointer;
+}
+
+.tarea label {
+    color: #f0f1ff;
+    cursor: pointer;
+}
+
+.site-footer {
+    padding: 25px 20px;
+    text-align: center;
+    color: #aeb4df;
+    background-color: #050617;
+    border-top: 2px solid #303879;
+}
+
+.site-footer p {
+    margin: 5px 0;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding-top: 55px;
+        padding-bottom: 55px;
+    }
+
+    .producto-info {
+        padding: 26px;
+    }
+
+    .todo-list {
+        padding: 34px;
+    }
+}
