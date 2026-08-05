@@ -293,3 +293,40 @@ input {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+.producto:focus-within {
+    border-color: #74ff9c;
+    box-shadow:
+        0 0 0 3px rgba(116, 255, 156, 0.25),
+        0 16px 32px rgba(0, 0, 0, 0.45);
+}
+
+.producto:hover {
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45);
+}
+
+.btn-comprar:hover {
+    box-shadow: 0 6px 18px rgba(89, 243, 255, 0.35);
+}
+
+.btn-comprar:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.tarea label:hover {
+    color: #7ffcff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
