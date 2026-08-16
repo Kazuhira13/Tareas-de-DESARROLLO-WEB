@@ -37,11 +37,27 @@ export function eliminarTarea(id) {
 }
 
 export function toggleTarea(id) {
-    // Día 3
+    const tarea = tareas.find((tarea) => tarea.id === id);
+
+    if (!tarea) {
+        return false;
+    }
+
+    tarea.completada = !tarea.completada;
+
+    return true;
 }
 
 export function filtrarTareas(filtro) {
-    // Día 3
+    if (filtro === "pendientes") {
+        return tareas.filter((tarea) => !tarea.completada);
+    }
+
+    if (filtro === "completadas") {
+        return tareas.filter((tarea) => tarea.completada);
+    }
+
+    return tareas;
 }
 
 export function guardar() {
@@ -62,7 +78,7 @@ export function render(filtro = "todas") {
 
     lista.innerHTML = "";
 
-    const visibles = tareas;
+    const visibles = filtrarTareas(filtro);
 
     for (const tarea of visibles) {
         const li = document.createElement("li");
@@ -153,6 +169,7 @@ function init() {
             });
 
             btn.classList.add("activo");
+
             render(filtroActual);
         });
     });
