@@ -61,11 +61,26 @@ export function filtrarTareas(filtro) {
 }
 
 export function guardar() {
-    // Día 4: localStorage.setItem(STORAGE_KEY, JSON.stringify(tareas));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tareas));
 }
 
 export function cargar() {
-    // Día 4: localStorage.getItem(STORAGE_KEY) y JSON.parse();
+    try {
+        const datos = localStorage.getItem(STORAGE_KEY);
+
+        if (!datos) {
+            tareas = [];
+            return;
+        }
+
+        const tareasGuardadas = JSON.parse(datos);
+
+        tareas = Array.isArray(tareasGuardadas)
+            ? tareasGuardadas
+            : [];
+    } catch {
+        tareas = [];
+    }
 }
 
 export function render(filtro = "todas") {
