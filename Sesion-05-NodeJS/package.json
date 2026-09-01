@@ -1,6 +1,7 @@
 {
   "name": "tarea-node-servidor-mensajes",
   "version": "1.0.0",
+  "private": true,
   "type": "module",
   "description": "Tarea: Servidor HTTP con Node.js puro — Desarrollo Web Sesión 5",
   "scripts": {
