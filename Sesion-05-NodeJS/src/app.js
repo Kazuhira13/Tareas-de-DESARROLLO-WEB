@@ -20,10 +20,6 @@ import os from 'node:os';
 import path from 'node:path';
 import fs from 'node:fs/promises';
 
-// =====================================================
-// Utilidades (ya implementadas — no las modifiques)
-// =====================================================
-
 /**
  * Crea un id único para cada mensaje.
  * @returns {string}
@@ -33,7 +29,7 @@ export function generarId() {
 }
 
 /**
- * Lee el body (cuerpo) de una petición HTTP como string.
+ * Lee el body de una petición HTTP como string.
  * @param {import('node:http').IncomingMessage} req
  * @returns {Promise<string>}
  */
@@ -46,16 +42,9 @@ function leerBody(req) {
     });
 }
 
-// =====================================================
-// Funciones de la aplicación
-// =====================================================
-
 /**
- * Parsea los argumentos de la línea de comandos (process.argv).
- * Acepta: --nombre <valor> y --puerto <valor>.
- * Valores por defecto: nombre = "invitado", puerto = 3000.
- *
- * @param {string[]} argv - Arreglo completo (incluye las posiciones 0 y 1).
+ * Parsea los argumentos de la línea de comandos.
+ * @param {string[]} argv
  * @returns {{ nombre: string, puerto: number }}
  */
 export function parsearArgumentos(argv) {
@@ -80,11 +69,7 @@ export function parsearArgumentos(argv) {
 }
 
 /**
- * Construye la configuración de la app a partir de variables de entorno.
- * Lee: PORT, NOMBRE_APP y ARCHIVO_DATOS.
- * Valores por defecto: puerto 3000, nombreApp "mensajes-api",
- * archivoDatos "data/mensajes.json".
- *
+ * Construye la configuración de la aplicación usando variables de entorno.
  * @param {NodeJS.ProcessEnv} env
  * @returns {{ puerto: number, nombreApp: string, archivoDatos: string }}
  */
@@ -97,7 +82,7 @@ export function obtenerConfig(env) {
 }
 
 /**
- * Devuelve información del sistema usando el módulo os.
+ * Devuelve información del sistema.
  * @returns {{ plataforma: string, nucleos: number, memoriaLibreMB: number, hostname: string }}
  */
 export function infoSistema() {
@@ -111,50 +96,100 @@ export function infoSistema() {
 
 /**
  * Crea un logger basado en EventEmitter.
- * Devuelve un objeto con dos métodos:
- *   - registrar(mensaje): emite el evento "registro" con la cadena
- *     `[<fecha ISO>] <mensaje>`.
- *   - onRegistro(fn): suscribe fn al evento "registro".
- *
- * @returns {{ registrar: (mensaje: string) => void, onRegistro: (fn: (linea: string) => void) => void }}
+ * @returns {{
+ * registrar: (mensaje: string) => void,
+ * onRegistro: (fn: (linea: string) => void) => void
+ * }}
  */
 export function crearLogger() {
-    throw new Error('Not implemented: crearLogger');
+    const emisor = new EventEmitter();
+
+    function registrar(mensaje) {
+        const linea = `[${new Date().toISOString()}] ${mensaje}`;
+        emisor.emit('registro', linea);
+    }
+
+    function onRegistro(fn) {
+        emisor.on('registro', fn);
+    }
+
+    return {
+        registrar,
+        onRegistro
+    };
 }
 
 /**
  * Lee el arreglo de mensajes desde un archivo JSON.
- * Si el archivo no existe, devuelve []. Si existe pero no es un arreglo, [].
+ * Si no existe, contiene JSON inválido o no contiene un arreglo,
+ * devuelve un arreglo vacío.
  *
- * @param {string} archivoDatos - Ruta del archivo.
+ * @param {string} archivoDatos
  * @returns {Promise<Array<{id: string, texto: string, fecha: string}>>}
  */
 export async function leerMensajes(archivoDatos) {
-    throw new Error('Not implemented: leerMensajes');
+    try {
+        const contenido = await fs.readFile(archivoDatos, 'utf8');
+        const datos = JSON.parse(contenido);
+
+        return Array.isArray(datos) ? datos : [];
+    } catch (error) {
+        if (error.code === 'ENOENT' || error instanceof SyntaxError) {
+            return [];
+        }
+
+        throw error;
+    }
 }
 
 /**
- * Agrega un mensaje al archivo y lo devuelve.
- * Si el texto es vacío (o solo espacios) devuelve null.
- * Crea el directorio si no existe y escribe el arreglo actualizado.
+ * Agrega un mensaje al archivo y devuelve el mensaje creado.
+ * Si el texto está vacío devuelve null.
  *
- * @param {string} archivoDatos - Ruta del archivo.
+ * @param {string} archivoDatos
  * @param {string} texto
  * @returns {Promise<{id: string, texto: string, fecha: string} | null>}
  */
 export async function agregarMensaje(archivoDatos, texto) {
-    throw new Error('Not implemented: agregarMensaje');
+    const textoLimpio = typeof texto === 'string' ? texto.trim() : '';
+
+    if (textoLimpio === '') {
+        return null;
+    }
+
+    const mensajes = await leerMensajes(archivoDatos);
+
+    const nuevoMensaje = {
+        id: generarId(),
+        texto: textoLimpio,
+        fecha: new Date().toISOString()
+    };
+
+    mensajes.push(nuevoMensaje);
+
+    const directorio = path.dirname(archivoDatos);
+
+    await fs.mkdir(directorio, {
+        recursive: true
+    });
+
+    await fs.writeFile(
+        archivoDatos,
+        JSON.stringify(mensajes, null, 2),
+        'utf8'
+    );
+
+    return nuevoMensaje;
 }
 
 /**
- * Crea un servidor HTTP (sin escuchar aún) con estas rutas:
- *   GET  /            → 200 { mensaje, hora, sistema }
- *   GET  /mensajes    → 200 [ ...mensajes ]
- *   POST /mensajes    → 201 { nuevo mensaje }  (body JSON: { texto })
- *                      400 si falta el texto · 500 en caso de error
- *   cualquier otra    → 404 { error }
+ * Crea un servidor HTTP con las rutas de la API.
  *
- * @param {{ archivoDatos?: string, nombreApp?: string, logger?: ReturnType<typeof crearLogger> }} [config]
+ * @param {{
+ * archivoDatos?: string,
+ * nombreApp?: string,
+ * logger?: ReturnType<typeof crearLogger>
+ * }} [config]
  * @returns {import('node:http').Server}
  */
 export function crearServidor(config = {}) {
@@ -162,10 +197,14 @@ export function crearServidor(config = {}) {
 }
 
 /**
- * Crea y arranca el servidor en el puerto indicado por config.puerto.
- * Al arrancar, registra en el logger: "Servidor en http://localhost:<puerto>".
+ * Crea y arranca el servidor.
  *
- * @param {{ puerto?: number, archivoDatos?: string, nombreApp?: string, logger?: ReturnType<typeof crearLogger> }} [config]
+ * @param {{
+ * puerto?: number,
+ * archivoDatos?: string,
+ * nombreApp?: string,
+ * logger?: ReturnType<typeof crearLogger>
+ * }} [config]
  * @returns {import('node:http').Server}
  */
 export function iniciarServidor(config = {}) {
