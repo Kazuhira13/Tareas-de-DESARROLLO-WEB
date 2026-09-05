@@ -36,6 +36,7 @@ export function generarId() {
 function leerBody(req) {
     return new Promise((resolve, reject) => {
         let data = '';
+
         req.on('data', (chunk) => (data += chunk));
         req.on('end', () => resolve(data));
         req.on('error', reject);
@@ -121,9 +122,6 @@ export function crearLogger() {
 
 /**
  * Lee el arreglo de mensajes desde un archivo JSON.
- * Si no existe, contiene JSON inválido o no contiene un arreglo,
- * devuelve un arreglo vacío.
- *
  * @param {string} archivoDatos
  * @returns {Promise<Array<{id: string, texto: string, fecha: string}>>}
  */
@@ -143,15 +141,15 @@ export async function leerMensajes(archivoDatos) {
 }
 
 /**
- * Agrega un mensaje al archivo y devuelve el mensaje creado.
- * Si el texto está vacío devuelve null.
- *
+ * Agrega un mensaje al archivo.
  * @param {string} archivoDatos
  * @param {string} texto
  * @returns {Promise<{id: string, texto: string, fecha: string} | null>}
  */
 export async function agregarMensaje(archivoDatos, texto) {
-    const textoLimpio = typeof texto === 'string' ? texto.trim() : '';
+    const textoLimpio = typeof texto === 'string'
+        ? texto.trim()
+        : '';
 
     if (textoLimpio === '') {
         return null;
@@ -183,8 +181,7 @@ export async function agregarMensaje(archivoDatos, texto) {
 }
 
 /**
- * Crea un servidor HTTP con las rutas de la API.
- *
+ * Crea el servidor HTTP de la API.
  * @param {{
  * archivoDatos?: string,
  * nombreApp?: string,
@@ -193,12 +190,132 @@ export async function agregarMensaje(archivoDatos, texto) {
  * @returns {import('node:http').Server}
  */
 export function crearServidor(config = {}) {
-    throw new Error('Not implemented: crearServidor');
+    const archivoDatos =
+        config.archivoDatos || 'data/mensajes.json';
+
+    const nombreApp =
+        config.nombreApp || 'mensajes-api';
+
+    const logger =
+        config.logger || crearLogger();
+
+    return http.createServer(async (req, res) => {
+        const metodo = req.method || 'GET';
+        const url = new URL(
+            req.url || '/',
+            'http://localhost'
+        );
+
+        const ruta = url.pathname;
+
+        logger.registrar(`${metodo} ${ruta}`);
+
+        res.setHeader(
+            'Content-Type',
+            'application/json; charset=utf-8'
+        );
+
+        try {
+            if (metodo === 'GET' && ruta === '/') {
+                res.statusCode = 200;
+
+                res.end(
+                    JSON.stringify({
+                        mensaje: `Bienvenido a ${nombreApp}`,
+                        hora: new Date().toISOString(),
+                        sistema: infoSistema()
+                    })
+                );
+
+                return;
+            }
+
+            if (
+                metodo === 'GET' &&
+                ruta === '/mensajes'
+            ) {
+                const mensajes =
+                    await leerMensajes(archivoDatos);
+
+                res.statusCode = 200;
+                res.end(JSON.stringify(mensajes));
+
+                return;
+            }
+
+            if (
+                metodo === 'POST' &&
+                ruta === '/mensajes'
+            ) {
+                const cuerpo = await leerBody(req);
+
+                let datos;
+
+                try {
+                    datos = cuerpo
+                        ? JSON.parse(cuerpo)
+                        : {};
+                } catch {
+                    res.statusCode = 400;
+
+                    res.end(
+                        JSON.stringify({
+                            error: 'JSON inválido'
+                        })
+                    );
+
+                    return;
+                }
+
+                const nuevoMensaje =
+                    await agregarMensaje(
+                        archivoDatos,
+                        datos.texto
+                    );
+
+                if (!nuevoMensaje) {
+                    res.statusCode = 400;
+
+                    res.end(
+                        JSON.stringify({
+                            error: 'El texto es obligatorio'
+                        })
+                    );
+
+                    return;
+                }
+
+                res.statusCode = 201;
+                res.end(JSON.stringify(nuevoMensaje));
+
+                return;
+            }
+
+            res.statusCode = 404;
+
+            res.end(
+                JSON.stringify({
+                    error: 'Ruta no encontrada'
+                })
+            );
+        } catch (error) {
+            logger.registrar(
+                `Error ${metodo} ${ruta}: ${error.message}`
+            );
+
+            res.statusCode = 500;
+
+            res.end(
+                JSON.stringify({
+                    error: 'Error interno del servidor'
+                })
+            );
+        }
+    });
 }
 
 /**
  * Crea y arranca el servidor.
- *
  * @param {{
  * puerto?: number,
  * archivoDatos?: string,
@@ -208,5 +325,19 @@ export function crearServidor(config = {}) {
  * @returns {import('node:http').Server}
  */
 export function iniciarServidor(config = {}) {
-    throw new Error('Not implemented: iniciarServidor');
+    const puerto = config.puerto ?? 3000;
+    const logger = config.logger || crearLogger();
+
+    const servidor = crearServidor({
+        ...config,
+        logger
+    });
+
+    servidor.listen(puerto, () => {
+        logger.registrar(
+            `Servidor en http://localhost:${puerto}`
+        );
+    });
+
+    return servidor;
 }
